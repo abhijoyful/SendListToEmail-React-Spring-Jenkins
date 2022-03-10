@@ -1,4 +1,4 @@
 # SendListToEmail-React-Spring-Jenkins
 
-- Application to take list of email addresses from ui and send that list to a mailbox.
-- Spring Boot app and Reactjs app will be built and deployed on a jenkins pipeline.
+- Application to take list of email addresses via a ui and send that list to a mailbox via backend.
+- Reactjs app and Spring Boot backend app will be built and deployed together on a jenkins pipeline.
