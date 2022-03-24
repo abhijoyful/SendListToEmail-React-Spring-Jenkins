@@ -12,9 +12,32 @@ const sendToRestSvc = async emailArray => {
   for (const object of emailArray) {
     emailAddresses.push(object.text);
   }
-  const res = await fetch({ url: 'localhost:8080/takeEmails', method: "POST", body: emailAddresses });
-  const data = await res.json();
-  return data;
+  // console.log("calling now");
+  // const res = await fetch({ url: 'localhost:8080/takeEmails', method: "POST", body: emailAddresses });
+  // console.log("called");
+  // const data = await res.text();
+  // return data;
+
+  let url = 'http://localhost:8080/takeEmails';
+        let res = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(emailAddresses),
+        });
+
+        if (res.ok) {
+            // if text response then use:
+            let textResponse = await res.text();
+            console.log(textResponse);
+            return textResponse;
+            // if json response then use:
+            // let jsonResponse = await res.json();
+            // return JSON.parse(jsonResponse.data);
+        } else {
+            return `HTTP error: ${res.status}`;
+        }
 }
 
 class EmailApp extends React.Component {
